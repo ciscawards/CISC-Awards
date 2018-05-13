@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223061738) do
+ActiveRecord::Schema.define(version: 20180512233227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(version: 20180223061738) do
   create_table "cohorts", force: :cascade do |t|
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "active",     default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "active",                        default: false
+    t.datetime "steel_work_completed_deadline"
   end
 
   create_table "submission_categories", force: :cascade do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20180223061738) do
     t.boolean  "contact_cisc",              default: false
     t.datetime "steelwork_completion_date"
     t.string   "brief_description"
+    t.datetime "steel_work_completed_on"
     t.index ["cohort_id"], name: "index_submissions_on_cohort_id", using: :btree
     t.index ["user_id"], name: "index_submissions_on_user_id", using: :btree
   end

@@ -11,6 +11,11 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :steel_work_completed_on %>
+          <%= f.text_field :steel_work_completed_on, data:{ provide:'datepicker' }, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
           <%= f.label :project_location %>
           <%= f.text_area :project_location, class: 'form-control no-wysiwyg' %>
         </div>

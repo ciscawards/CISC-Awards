@@ -47,7 +47,7 @@ class CohortsController < ApplicationController
   private
 
     def cohort_params
-      params.require(:cohort).permit(:start_at, :end_at, :active, categories_attributes: [:id, :title, :description, :_destroy])
+      params.require(:cohort).permit(:start_at, :end_at, :steel_work_completed_deadline, :active, categories_attributes: [:id, :title, :description, :_destroy])
     end
 
 end
