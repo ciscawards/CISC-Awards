@@ -1,6 +1,6 @@
 <table class="table table-striped">
   <tr>
-    <td class="col-md-3"><%= check_box_tag "#{f.object.category.title.parameterize(separator: '_')}_#{f.object.category.id}", nil, f.object.description.present?, class: 'apply-category' %> <b><%= f.object.category.title %></b></td>
+    <td class="col-md-3"><%= check_box_tag "#{f.object.category.title.parameterize(separator: '_')}_#{f.object.category.id}", f.object.category.always_selected?, f.object.description.present?, {class: "apply-category", disabled: f.object.category.always_selected? ? true : false} %> <b><%= f.object.category.title %></b></td>
     <td class="col-md-9"><%= sanitize(f.object.category.description) %></td>
   </tr>
 

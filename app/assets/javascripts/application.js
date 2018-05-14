@@ -19,6 +19,7 @@
 //= require z.jquery.fileupload
 //= require cocoon
 //= require froala_editor.min.js
+//= require rails.validations
 
 $.fraola_creds = {
     toolbarStickyOffset: 50,

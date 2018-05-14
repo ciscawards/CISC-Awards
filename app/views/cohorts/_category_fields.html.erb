@@ -4,6 +4,13 @@
     <%= f.text_field :title, class: 'form-control' %>
   </div>
 
+  <div class="checkbox">
+    <%= f.label :always_selected do %>
+      <%= f.check_box :always_selected %>
+      <span>Make this a default category (ie. user may not "unselect" this)</span>
+    <% end %>
+  </div>
+
   <div class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description, class: 'form-control' %>
