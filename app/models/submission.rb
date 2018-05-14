@@ -11,10 +11,10 @@ class Submission < ApplicationRecord
   scope :submitted, -> { where(:submitted => true) }
   scope :incomplete, -> { where("submitted IS NULL OR submitted = false") }
 
-  validates :steel_work_completed_on, presence: true
-  validate :steelwork_completed_date_before_dealine
+  validates :steelwork_completion_date, presence: true
+  validate :steelwork_completion_date_before_deadline
 
-  def steelwork_completed_date_before_dealine
-    errors.add(:steel_work, "must be completed prior to #{cohort.steel_work_completed_deadline.strftime("%B %d, %Y")}") if steel_work_completed_on > cohort.steel_work_completed_deadline
+  def steelwork_completion_date_before_deadline
+    errors.add(:steel_work, "must be completed prior to #{cohort.steel_work_completed_deadline.strftime("%B %d, %Y")}") if steelwork_completion_date > cohort.steel_work_completed_deadline
   end
 end
