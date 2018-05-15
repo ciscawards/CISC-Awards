@@ -20,9 +20,12 @@ class SubmissionsController < ApplicationController
   end
 
   def new
-    @submission = Submission.new
     active_cohort = Cohort.where(active: true).first
+    require_valid_cohort(active_cohort, active_cohort.new_submission_cutoff_date)
+
+    @submission = Submission.new
     @submission.cohort = active_cohort
+
     active_cohort.categories.each do |category|
       @submission.submission_categories.build({:category => category})
     end
@@ -30,8 +33,11 @@ class SubmissionsController < ApplicationController
   end
 
   def create
+    active_cohort = Cohort.where(active: true).first
+    require_valid_cohort(active_cohort, active_cohort.new_submission_cutoff_date)
+
     @submission = Submission.new(submission_params)
-    @submission.cohort = Cohort.where(active: true).first
+    @submission.cohort = active_cohort
     @submission.user = current_user
     @submission.submitted = true if params[:submit_judges]
     if @submission.save
@@ -44,6 +50,8 @@ class SubmissionsController < ApplicationController
 
   def edit
     @submission = Submission.find(params[:id])
+    require_valid_cohort(@submission.cohort, @submission.cohort.edit_submission_cutoff_date)
+
     existing_s_c = @submission.submission_categories.map(&:category_id)
     categories = @submission.cohort.categories.reject { |category| existing_s_c.include?(category.id) }
     categories.each do |category|
@@ -53,6 +61,8 @@ class SubmissionsController < ApplicationController
 
   def update
     @submission = Submission.find(params[:id])
+    require_valid_cohort(@submission.cohort, @submission.cohort.new_submission_cutoff_date)
+
     s_p = submission_params
     s_p[:submitted] = true if params[:submit_judges]
     if @submission.update_attributes(s_p)
@@ -93,5 +103,12 @@ class SubmissionsController < ApplicationController
 
   def set_s3_direct_post
     @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
+  end
+
+  def require_valid_cohort(cohort, cutoff_date)
+    if cohort.nil? || cutoff_date < Time.now && !current_user.is_admin?
+      flash[:warning] = "The cohort is no longer valid."
+      redirect_to submissions_path
+    end
   end
 end
