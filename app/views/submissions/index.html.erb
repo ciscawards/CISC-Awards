@@ -5,7 +5,7 @@
     <h1>Submissions</h1>
   </div>
   <div style="margin-left:auto">
-    <%= link_to "New Submission", new_submission_path, class: "btn btn-primary" %>
+    <%= link_to("New Submission", new_submission_path, class: "btn btn-primary") unless Cohort.active.nil? || Cohort.active.new_cutoff_date_invalid? %>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
         } unless cohort.submissions.incomplete.reject{|submission| !@submissions.include?(submission)}.empty? %>
       </div>
     <% end %>
-  <%= submit_tag "Download Selected PDF's", class: "btn btn-primary" %>
-<% end %>
+    <%= submit_tag "Download Selected PDF's", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 
