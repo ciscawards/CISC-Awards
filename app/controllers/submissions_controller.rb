@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
     else
       @submissions = Submission.where(user_id: current_user.id)
     end
-    @cohorts = Cohort.order({active: "DESC"}).order({end_at: "DESC"}).find(@submissions.map(&:cohort_id).uniq)
+    @cohorts = Cohort.order({active: "DESC"}).order({new_submission_cutoff_date: "DESC"}).find(@submissions.map(&:cohort_id).uniq)
   end
 
   def show

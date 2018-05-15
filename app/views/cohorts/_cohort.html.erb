@@ -1,6 +1,6 @@
 <tr>
   <td><%= cohort.start_at.strftime("%B %d, %Y") %></td>
-  <td><%= cohort.end_at.strftime("%B %d, %Y") %></td>
+  <td><%= cohort.new_submission_cutoff_date.strftime("%B %d, %Y") %></td>
   <td><%= link_to 'edit', edit_cohort_path(cohort) %> | <%= link_to "delete", cohort, method: :delete,
                                                                     data: { confirm: "You sure?" } %></td>
 </tr>
