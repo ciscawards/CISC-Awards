@@ -3,6 +3,10 @@ class TeamMember < ApplicationRecord
   attr_accessor :title_selected_value
   TITLES = [ "Project Lead", "Fabricator", "Architect", "Engineer", "General Contractor", "Steel Detailer", "Steel Erector", "Owner" ]
 
+  validates :name, presence: true
+  validates :title, presence: true
+  validates :email, presence: true
+
 
   def selected_title
     return self.title if TITLES.include?(self.title)
