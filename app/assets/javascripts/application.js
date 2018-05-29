@@ -19,6 +19,7 @@
 //= require cocoon
 //= require froala_editor.min.js
 //= require rails.validations
+//= require rails.validations.actionView
 //= require_tree .
 
 $.fraola_creds = {
