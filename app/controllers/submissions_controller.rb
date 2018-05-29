@@ -85,7 +85,7 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    params.require(:submission).permit(:name, :steelwork_completion_date, :description, :project_location, :cisc_number, :contact_cisc, attachments_attributes: [:id, :url, :_destroy], team_members_attributes: [:id, :name, :title, :email, :_destroy], submission_categories_attributes: [:id, :description, :category_id, :_destroy])
+    params.require(:submission).permit(:name, :steelwork_completion_date, :brief_description, :description, :project_location, :cisc_number, :contact_cisc, attachments_attributes: [:id, :url, :_destroy], team_members_attributes: [:id, :name, :title, :email, :_destroy], submission_categories_attributes: [:id, :description, :category_id, :_destroy])
   end
 
   # Before filters

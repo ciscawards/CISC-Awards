@@ -20,6 +20,7 @@
 //= require froala_editor.min.js
 //= require rails.validations
 //= require rails.validations.actionView
+//= require rails.validations.customValidators
 //= require_tree .
 
 $.fraola_creds = {
