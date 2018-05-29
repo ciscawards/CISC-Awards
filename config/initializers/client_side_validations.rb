@@ -15,10 +15,10 @@ ActionView::Base.field_error_proc = proc do |html_tag, instance|
   if html_tag =~ /^<label/
     # This is where the label setting comes from, however the passed in label has no message attribute, so this does not
     # display the error message.
-    %(<div class="field_with_errors">#{html_tag}<label for="#{instance.send(:tag_id)}" class="inline-error message"> #{instance.error_message.first}</label></div>).html_safe
+    %(<div class="field_with_errors">#{html_tag}<label for="#{instance.send(:tag_id)}" class="label-errors message"> #{instance.error_message.first}</label></div>).html_safe
   else
     # This will become the new input field wrapped with this error div and the error message will be in this label with
     # a wrapping div.
-    %(<div class="field_with_errors">#{html_tag}</div>).html_safe
+    %(<div class="field_with_errors input-errors">#{html_tag}</div>).html_safe
   end
 end
