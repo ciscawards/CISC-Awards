@@ -14,7 +14,11 @@ class Submission < ApplicationRecord
   validates :name, presence: true
   validates :steelwork_completion_date, presence: true, steelwork_completion_date: true
   validates :project_location, presence: true
-  validates :brief_description, presence: true
-  validates :cisc_number, presence: true
+  validates :brief_description, presence: true, :length => {
+      :maximum   => 123,
+      :tokenizer => lambda { |str| str.scan(/\s+|$/) },
+      :too_long  => "can't have more than 125 words"
+  }
   validates :description, presence: true
+  validates :cisc_number, presence: true, numericality: { only_integer: true }
 end
