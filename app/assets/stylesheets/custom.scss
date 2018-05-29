@@ -108,3 +108,9 @@ span.picture {
 .form-pad-bottom {
   padding-bottom: 20px;
 }
+
+.inline-error:before {
+  content:" ";
+  display:inline-block;
+  width:5px
+}

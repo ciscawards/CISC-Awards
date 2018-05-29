@@ -13,18 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require_tree .
 //= require bootstrap-datepicker
 //= require jquery.ui.widget
 //= require z.jquery.fileupload
 //= require cocoon
 //= require froala_editor.min.js
 //= require rails.validations
+//= require_tree .
 
 $.fraola_creds = {
     toolbarStickyOffset: 50,
         key: 'PG-10dpj1xB3wwdqwI2J3B10B7B7A5F4igqknsfxyG5hcj1=='
-}
+};
 
 $(document).ready(function(){
     $('textarea:not(.no-wysiwyg)').froalaEditor($.fraola_creds);
