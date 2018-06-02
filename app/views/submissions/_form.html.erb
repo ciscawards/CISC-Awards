@@ -1,4 +1,4 @@
-<%= form_for(@submission, validate: true, html: { class: 'form-pad-bottom', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+<%= form_for(@submission, validate: true, html: { id: 'submission-form', class: 'form-pad-bottom', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
 
   <div class="row">
     <div class="col-md-12">
@@ -185,13 +185,17 @@
         input.isValid(validators);
     });
 
+    $(function () {
+        $('#submission-form').areYouSure({message: 'Are you sure you want to leave? Changes may not have been saved.'});
+    });
+
     //TODO: Need to setup an autosave here.
     // $(function () {
     //     if ($("#new_post").length > 0) {
-    //         setTimeout(autoSavePost, 60000);
+    //         setTimeout(autoSavePost, 6000);
     //     }
     // });
-    //
+
     // $.ajax({
     //     type: "POST",
     //     url: "/posts/autosave",
