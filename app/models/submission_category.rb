@@ -3,9 +3,13 @@ class SubmissionCategory < ApplicationRecord
   belongs_to :category
   after_save { |s_c| s_c.destroy if s_c.description.blank? }
 
-  validates_presence_of :description, :if => :category_always_selected
+  validates :description, presence: true, if: -> record { record.category_always_selected && record.submission_submitted}
 
   def category_always_selected
     category.always_selected?
+  end
+
+  def submission_submitted
+    submission.submitted?
   end
 end

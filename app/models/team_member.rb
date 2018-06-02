@@ -3,10 +3,11 @@ class TeamMember < ApplicationRecord
   attr_accessor :title_selected_value
   TITLES = [ "Project Lead", "Fabricator", "Architect", "Engineer", "General Contractor", "Steel Detailer", "Steel Erector", "Owner" ]
 
-  validates :name, presence: true
-  validates :title, presence: true
-  validates :email, presence: true
-
+  with_options :if => :submission_submitted? do
+    validates :name, presence: true
+    validates :title, presence: true
+    validates :email, presence: true
+  end
 
   def selected_title
     return self.title if TITLES.include?(self.title)
@@ -16,5 +17,11 @@ class TeamMember < ApplicationRecord
 
   def titles_with_other
     TeamMember::TITLES + [I18n.t("submission.team_member.titles.other")]
+  end
+
+  private
+
+  def submission_submitted?
+    submission.submitted?
   end
 end

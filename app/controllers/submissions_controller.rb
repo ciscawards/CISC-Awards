@@ -39,7 +39,10 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
     @submission.cohort = active_cohort
     @submission.user = current_user
-    @submission.submitted = true if params[:submit_judges]
+    if params[:submit_judges]
+      @submission.instance_variable_set("@final_submission", true)
+      @submission.submitted = true
+    end
     if @submission.save
       flash[:info] = "Submission has been saved."
       redirect_to submissions_path
@@ -64,7 +67,10 @@ class SubmissionsController < ApplicationController
     require_valid_cohort(@submission.cohort, @submission.cohort.new_submission_cutoff_date)
 
     s_p = submission_params
-    s_p[:submitted] = true if params[:submit_judges]
+    if params[:submit_judges]
+      @submission.instance_variable_set("@final_submission", true)
+      s_p[:submitted] = true
+    end
     if @submission.update_attributes(s_p)
       flash[:success] = "Submission updated"
       redirect_to submissions_path
