@@ -36,3 +36,5 @@ en:
           attributes:
             steelwork_completion_date:
               steelwork_completion_date: "can't be after the deadline (see below)"
+            brief_description:
+              word_count: "word count exceeds the maximum"
