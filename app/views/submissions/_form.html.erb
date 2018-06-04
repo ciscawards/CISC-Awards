@@ -14,7 +14,7 @@
           <div id="steelwork_completion_date" class="small" data-steelwork-completion-date="<%= @submission.cohort.steel_work_completed_deadline.strftime("%Y-%m-%d") %>">
             Steelwork must be completed prior to <%= @submission.cohort.steel_work_completed_deadline.strftime("%B %-d, %Y") %>
           </div>
-          <%= f.text_field :steelwork_completion_date, data:{ provide:'datepicker' }, class: 'form-control' %>
+          <%= f.text_field :steelwork_completion_date, data:{ provide:'datepicker' }, class: 'form-control', value: @submission.steelwork_completion_date.strftime("%Y-%m-%d") %>
         </div>
 
         <div class="form-group">

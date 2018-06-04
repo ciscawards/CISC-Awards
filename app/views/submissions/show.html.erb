@@ -1,14 +1,26 @@
 <% provide(:title, @submission.name) %>
+    <h1>
+      <%= @submission.name %>
+      <br /><small><%= @submission.project_location %></small>
+    </h1>
+
 <div class="row">
   <div class="col-md-12">
-    <h1><%= @submission.name %></h1>
+    <small>Brief Description</small>
+    <%= sanitize(@submission.brief_description) %>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <h3><%= @submission.project_location %></h3>
-  </div>
-</div>
+<h3>Team Members</h3>
+<table class="table table-striped">
+  <% @submission.team_members.each do |team_member| %>
+    <tr>
+      <td class="col-md-4"><b><%= team_member.name %></b></td>
+      <td class="col-md-4"><%= team_member.title %></td>
+      <td class="col-md-4"><%= team_member.email %></td>
+    </tr>
+  <% end %>
+</table>
+<h3>Description</h3>
 <div class="row">
   <div class="col-md-12">
     <%= sanitize(@submission.description) %>
@@ -23,7 +35,6 @@
     </tr>
   <% end %>
 </table>
-
 
 <% @submission.attachments.each do |attachment| %>
   <p>Attachment preview:</p>
