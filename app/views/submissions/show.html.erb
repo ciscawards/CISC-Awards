@@ -31,4 +31,4 @@
 <% end %>
 
 <%= link_to 'Back', submissions_path %> |
-<%= sanitize(controls_for @submission, current_user) %>
+<%= sanitize_submissions_controls(controls_for @submission, current_user) %>

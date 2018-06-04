@@ -10,4 +10,8 @@ module SubmissionsHelper
     end
     controls.join(" | ")
   end
+
+  def sanitize_submissions_controls(control)
+    sanitize(control, attributes: %w(href class data-confirm data-method rel))
+  end
 end
