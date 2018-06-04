@@ -10,7 +10,7 @@
 </div>
 
 <% unless @cohorts.empty? %>
-  <%= form_tag bulk_pdf_path, method: :post do %>
+  <%= form_tag bulk_pdf_path(format: :zip), method: :post do %>
     <% @cohorts.each do |cohort| %>
       <div class="well">
         <div class="row">

@@ -1,46 +1,38 @@
 class DownloadsController < ApplicationController
+  require 'zip'
   before_action :logged_in_user
   before_action :submissions_for_user_judge_or_admin, only: [:show]
   after_action :clear_tmp
 
   def show
+    submission = Submission.find(params[:submission_id])
+    download = Download.new(submission)
+    pdf = download.to_pdf
     respond_to do |format|
-      format.pdf { submission_pdf }
+      format.pdf { send_file pdf, download_attributes(download) }
     end
   end
 
   def bulk_pdf
-    bulkify_pdfs
-    #TODO: This needs to ajax respond
-    # respond_to do |format|
-    #   format.pdf { bulkify_pdfs }
-    # end
+    submissions = Submission.find(params[:submission_ids].keys)
+    respond_to do |format|
+      format.zip do
+        compressed_filestream = Zip::OutputStream.write_buffer do |zos|
+          submissions.each do |submission|
+            zos.put_next_entry "submission-#{submission.id}.pdf"
+            download = Download.new(submission)
+            zos.print download.to_pdf
+          end
+        end
+        compressed_filestream.rewind
+        send_data compressed_filestream.read, filename: "submissions.zip"
+      end
+    end
   end
 
   private
 
-  def submission
-    Submission.find(params[:submission_id])
-  end
-
-  def download
-    Download.new(submission)
-  end
-
-  def submission_pdf
-    pdf = download.to_pdf
-    send_file pdf, download_attributes
-  end
-
-  def bulkify_pdfs
-    submissions = Submission.find(params[:submission_ids].keys)
-    submissions.each do |bulk_submission|
-      pdf = Download.new(bulk_submission).to_pdf
-      send_file pdf, download_attributes
-    end
-  end
-
-  def download_attributes
+  def download_attributes(download)
     {
         filename: download.filename,
         type: "application/pdf",
