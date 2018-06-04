@@ -5,7 +5,6 @@ class DownloadsController < ApplicationController
   after_action :clear_tmp
 
   def show
-    submission = Submission.find(params[:submission_id])
     download = Download.new(submission)
     pdf = download.to_pdf
     respond_to do |format|
@@ -14,6 +13,7 @@ class DownloadsController < ApplicationController
   end
 
   def bulk_pdf
+    redirect_to(root_url) and return unless current_user.is_judge? || current_user.is_admin?
     submissions = Submission.find(params[:submission_ids].keys)
     respond_to do |format|
       format.zip do
@@ -31,6 +31,10 @@ class DownloadsController < ApplicationController
   end
 
   private
+
+  def submission
+    Submission.find(params[:submission_id])
+  end
 
   def download_attributes(download)
     {
