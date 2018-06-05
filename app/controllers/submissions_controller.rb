@@ -149,9 +149,8 @@ class SubmissionsController < ApplicationController
   def generate_zipped_pdfs(submissions)
     compressed_filestream = Zip::OutputStream.write_buffer do |zos|
       submissions.each do |submission|
-        zos.put_next_entry "submission-#{submission.id}.pdf"
+        zos.put_next_entry "#{sanitize_filename(submission.name)}.pdf"
         kit = PDFKit.new(as_html(submission), :page_size => 'Letter')
-        # TODO: Style pdfs
         # kit.stylesheets << '/path/to/css/file'
         zos.print kit.to_pdf
       end
@@ -165,5 +164,11 @@ class SubmissionsController < ApplicationController
                      layout: "submission_pdf",
                      formats: "html",
                      locals: { submission: submission }
+  end
+
+  def sanitize_filename(filename)
+    fn = filename.split /(?<=.)\.(?=[^.])(?!.*\.[^.])/m
+    fn.map! { |s| s.gsub /[^a-z0-9\-]+/i, '_' }
+    fn.join '.'
   end
 end
