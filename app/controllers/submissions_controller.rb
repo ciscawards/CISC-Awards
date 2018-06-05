@@ -1,7 +1,9 @@
 class SubmissionsController < ApplicationController
+  require 'zip'
+
   before_action :logged_in_user
   before_action :submissions_for_user_or_admin, only: [:edit, :update, :destroy]
-  before_action :submissions_for_user_judge_or_admin, only: [:show]
+  before_action :submissions_for_user_judge_or_admin, only: [:show, :single_download]
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def index
@@ -88,15 +90,25 @@ class SubmissionsController < ApplicationController
     redirect_to submissions_path
   end
 
+  def single_download
+    submission = Submission.find(params[:id])
+    generate_zipped_pdfs [submission]
+  end
+
+  def bulk_actions
+    if params[:bulk_deletion]
+      bulk_deletion
+    else
+      bulk_download
+    end
+  end
+
   private
 
   def submission_params
     params.require(:submission).permit(:name, :steelwork_completion_date, :brief_description, :description, :project_location, :cisc_number, :contact_cisc, attachments_attributes: [:id, :url, :_destroy], team_members_attributes: [:id, :name, :title, :email, :_destroy], submission_categories_attributes: [:id, :description, :category_id, :_destroy])
   end
 
-  # Before filters
-
-  # Confirms the submission is owned by the current user.
   def submissions_for_user_or_admin
     @submission = Submission.find(params[:id])
     redirect_to(root_url) unless (current_user?(@submission.user) && !@submission.submitted) || current_user.is_admin?
@@ -116,5 +128,42 @@ class SubmissionsController < ApplicationController
       flash[:warning] = "The cohort is no longer valid."
       redirect_to submissions_path
     end
+  end
+
+  def bulk_download
+    redirect_to(root_url) and return unless current_user.is_judge? || current_user.is_admin?
+    submissions = Submission.find(params[:submission_ids].keys)
+    generate_zipped_pdfs submissions
+  end
+
+  def bulk_deletion
+    redirect_to submissions_path unless current_user.is_admin?
+    submissions = Submission.find(params[:submission_ids].keys)
+    submissions.each do |submission|
+      submission.destroy
+    end
+    flash[:success] = "Submissions deleted"
+    redirect_to submissions_path
+  end
+
+  def generate_zipped_pdfs(submissions)
+    compressed_filestream = Zip::OutputStream.write_buffer do |zos|
+      submissions.each do |submission|
+        zos.put_next_entry "submission-#{submission.id}.pdf"
+        kit = PDFKit.new(as_html(submission), :page_size => 'Letter')
+        # TODO: Style pdfs
+        # kit.stylesheets << '/path/to/css/file'
+        zos.print kit.to_pdf
+      end
+    end
+    compressed_filestream.rewind
+    send_data compressed_filestream.read, filename: "submissions.zip"
+  end
+
+  def as_html(submission)
+    render_to_string template: "submissions/pdf",
+                     layout: "submission_pdf",
+                     formats: "html",
+                     locals: { submission: submission }
   end
 end

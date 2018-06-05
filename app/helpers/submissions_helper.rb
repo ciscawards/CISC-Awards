@@ -3,7 +3,7 @@ module SubmissionsHelper
   # Returns the index controls for the given user.
   def controls_for(submission, user)
     controls = []
-    controls << (link_to 'download PDF', submission_download_path(submission, format: 'zip'), target: '_blank', class: 'download')
+    controls << (link_to 'download PDF', single_download_submission_path(submission), target: '_blank', class: 'download', method: :post)
     if user.is_admin? || (submission.user == user && !submission.submitted)
       controls << (link_to 'edit', edit_submission_path(submission)) if submission.cohort.edit_submission_cutoff_date > Time.now
       controls << (link_to "delete", submission, method: :delete, data: { confirm: "You sure?" })

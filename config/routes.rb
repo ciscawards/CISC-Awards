@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   post   '/signup',  to: 'users#create'
   resources :users
   resources :cohorts
-  post '/bulk_pdf', to: 'downloads#bulk_pdf'
   resources :submissions do
-    resource :download, only: [:show]
+    post :single_download, on: :member
   end
+  post '/bulk_actions', to: 'submissions#bulk_actions'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 end

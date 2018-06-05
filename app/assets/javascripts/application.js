@@ -31,6 +31,10 @@ $.fraola_creds = {
 
 $(document).ready(function(){
     $('textarea:not(.no-wysiwyg)').froalaEditor($.fraola_creds);
+    $('.js_select_all').change(function() {
+        var checkboxes = $(this).closest('table').find(':checkbox');
+        checkboxes.prop('checked', $(this).is(':checked'));
+    });
 });
 
 $(document).on('cocoon:after-insert', function(e, insertedItem) {

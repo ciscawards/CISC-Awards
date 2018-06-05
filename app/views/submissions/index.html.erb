@@ -10,7 +10,7 @@
 </div>
 
 <% unless @cohorts.empty? %>
-  <%= form_tag bulk_pdf_path(format: :zip), method: :post do %>
+  <%= form_tag bulk_actions_url, method: :post do %>
     <% @cohorts.each do |cohort| %>
       <div class="well">
         <div class="row">
@@ -28,8 +28,8 @@
         } unless cohort.submissions.incomplete.reject{|submission| !@submissions.include?(submission)}.empty? %>
       </div>
     <% end %>
-    <%= submit_tag "Download Selected PDF's", class: "btn btn-primary" %>
-    <div class="btn">second button here</div>
+    <%= submit_tag "Download Selected Submissions", class: "btn btn-primary" %>
+    <%= submit_tag "Delete Selected Submissions", class: "btn btn-primary", name: 'bulk_deletion', data: {confirm: "This will delete the selected submissions and cannot be undone. Are you sure?"} %>
   <% end %>
 <% end %>
 
