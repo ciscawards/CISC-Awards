@@ -39,7 +39,7 @@
 
 <% @submission.attachments.each do |attachment| %>
   <p>Attachment preview:</p>
-  <%= image_tag attachment.url, class: 'img-responsive' %>
+  <%= image_tag "http:#{attachment.url}", class: 'img-responsive' %>
 <% end %>
 
 <%= link_to 'Back', submissions_path %> |
