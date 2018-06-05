@@ -35,7 +35,7 @@
 
         <div class="form-group">
           <%= f.label :cisc_number, "CISC - Alberta Region Member Involved" %>
-          <%= f.number_field :cisc_number, class: 'form-control' %>
+          <%= f.number_field :cisc_number, class: 'form-control', min: 0 %>
           <div class="checkbox">
             <label>
               <%= f.check_box :contact_cisc %> Check here if you are not sure and a Planning Team member will follow up with you.
