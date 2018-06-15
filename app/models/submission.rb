@@ -20,8 +20,16 @@ class Submission < ApplicationRecord
       :too_long  => "can't have more than 125 words"
   }
 
+  validates :description, :length => {
+      :maximum   => 498,
+      :tokenizer => lambda { |str| str.scan(/\s+|$/) },
+      :js_tokenizer => "split(' ')",
+      :too_long  => "can't have more than 125 words"
+  }
+
+  validates :steelwork_completion_date, presence: true, steelwork_completion_date: true
+
   with_options :if => :submitted? do
-    validates :steelwork_completion_date, presence: true, steelwork_completion_date: true
     validates :project_location, presence: true
     validates :brief_description, presence: true
     validates :description, presence: true

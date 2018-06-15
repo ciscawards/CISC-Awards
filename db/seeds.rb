@@ -1,44 +1,10 @@
 # Create some users These shouldn't change after initial deploy
 
 admin = User.create!(
-    email:  "stephen.r.lind@gmail.com",
-    name: "Stephen Lind",
+    email:  "ciscawards@gmail.com",
+    name: "CISC Awards Administrator",
     password_digest: "$2a$10$OTvrczPu1h5zpo8.b61peOm6hHNyvu9aji3R1rKCVoR/JhCpPwXee", #password
     activated: true,
     activated_at: Time.zone.now,
     role: 2
 )
-
-judge = User.create!(
-    email:  "judge@gmail.com",
-    name: "Sylvester Stallone",
-    password_digest: "$2a$10$OTvrczPu1h5zpo8.b61peOm6hHNyvu9aji3R1rKCVoR/JhCpPwXee", #password
-    activated: true,
-    activated_at: Time.zone.now,
-    role: 1
-)
-
-submitter = User.create!(
-    email:  "frank@rjc.com",
-    name: "Frank Cavalier",
-    password_digest: "$2a$10$OTvrczPu1h5zpo8.b61peOm6hHNyvu9aji3R1rKCVoR/JhCpPwXee", #password
-    activated: true,
-    activated_at: Time.zone.now,
-    role: 0
-)
-
-# Create a bunch of test accounts
-
-# 99.times do |n|
-#   name  = Faker::Name.name
-#   email = "example-#{n+1}@railstutorial.org"
-#   password = "password"
-#   User.create!(name:  name,
-#                email: email,
-#                password:              password,
-#                password_confirmation: password,
-#                activated: true,
-#                activated_at: Time.zone.now)
-# end
-#
-# users = User.order(:created_at).take(6)
