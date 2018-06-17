@@ -44,6 +44,7 @@ class SubmissionsController < ApplicationController
     if params[:submit_judges]
       @submission.instance_variable_set("@final_submission", true)
       @submission.submitted = true
+      notify_team(@submission)
     end
     if @submission.save
       flash[:info] = "Submission has been saved."
@@ -72,6 +73,7 @@ class SubmissionsController < ApplicationController
     if params[:submit_judges]
       @submission.instance_variable_set("@final_submission", true)
       s_p[:submitted] = true
+      notify_team(@submission)
     end
     if @submission.update_attributes(s_p)
       flash[:success] = "Submission updated"
@@ -106,7 +108,7 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    params.require(:submission).permit(:name, :steelwork_completion_date, :brief_description, :description, :project_location, :cisc_number, :contact_cisc, attachments_attributes: [:id, :url, :_destroy], team_members_attributes: [:id, :name, :title, :email, :_destroy], submission_categories_attributes: [:id, :description, :category_id, :_destroy])
+    params.require(:submission).permit(:name, :steelwork_completion_date, :brief_description, :description, :project_location, :cisc_member, :contact_cisc, attachments_attributes: [:id, :url, :_destroy], team_members_attributes: [:id, :name, :title, :email, :_destroy], submission_categories_attributes: [:id, :description, :category_id, :_destroy])
   end
 
   def submissions_for_user_or_admin
@@ -127,6 +129,12 @@ class SubmissionsController < ApplicationController
     if cohort.nil? || cutoff_date < Time.now && !current_user.is_admin?
       flash[:warning] = "The cohort is no longer valid."
       redirect_to submissions_path
+    end
+  end
+
+  def notify_team(submission)
+    submission.team_members.each do |team_member|
+      team_member.send_submission_notification_email
     end
   end
 

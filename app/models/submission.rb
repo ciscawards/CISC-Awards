@@ -33,6 +33,6 @@ class Submission < ApplicationRecord
     validates :project_location, presence: true
     validates :brief_description, presence: true
     validates :description, presence: true
-    validates :cisc_number, presence: true
+    validates :cisc_member, presence: true
   end
 end

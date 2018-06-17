@@ -19,6 +19,10 @@ class TeamMember < ApplicationRecord
     TeamMember::TITLES + [I18n.t("submission.team_member.titles.other")]
   end
 
+  def send_submission_notification_email
+    TeamMemberMailer.submission_notification(self).deliver_now
+  end
+
   private
 
   def submission_submitted?
