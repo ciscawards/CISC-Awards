@@ -23,6 +23,11 @@ en:
   team_member_mailer:
     submission_notification:
       subject: "Project submission for the CISC Alberta Awards"
+  user_mailer:
+    account_activation:
+      subject: "Account activation"
+    password_reset:
+      subject: "Password reset"
   home:
     cta_submit_application: "Apply for a CISC Award"
     cta_manage_cohort: "Manage Cohorts"

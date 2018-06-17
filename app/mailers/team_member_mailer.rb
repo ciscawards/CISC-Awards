@@ -7,6 +7,6 @@ class TeamMemberMailer < ApplicationMailer
   #
   def submission_notification(team_member)
     @team_member = team_member
-    mail to: team_member.email, subject: "Account activation"
+    mail to: team_member.email, subject: I18n.t("team_member_mailer.submission_notification.subject")
   end
 end
