@@ -33,6 +33,6 @@ class Submission < ApplicationRecord
     validates :project_location, presence: true
     validates :brief_description, presence: true
     validates :description, presence: true
-    validates :cisc_number, presence: true, numericality: { only_integer: true }
+    validates :cisc_number, presence: true
   end
 end
