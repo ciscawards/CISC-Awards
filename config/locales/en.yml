@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  team_member_mailer:
+    submission_notification:
+      subject: "Project submission for the CISC Alberta Awards"
   home:
     cta_submit_application: "Apply for a CISC Award"
     cta_manage_cohort: "Manage Cohorts"
