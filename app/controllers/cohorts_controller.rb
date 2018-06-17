@@ -29,7 +29,7 @@ class CohortsController < ApplicationController
   def update
     @cohort = Cohort.find(params[:id])
     c_p = cohort_params
-    c_p[:active] = true if params[:activate_cohort]
+    c_p[:active] = !active? if params[:activate_cohort]
     if @cohort.update_attributes(c_p)
       flash[:success] = "Profile updated"
       redirect_to cohorts_path
