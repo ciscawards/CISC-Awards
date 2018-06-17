@@ -134,7 +134,7 @@ class SubmissionsController < ApplicationController
 
   def notify_team(submission)
     submission.team_members.each do |team_member|
-      team_member.send_submission_notification_email
+      team_member.send_submission_notification_email unless team_member.email == submission.user.email
     end
   end
 
