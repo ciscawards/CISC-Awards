@@ -8,9 +8,7 @@ class Cohort < ApplicationRecord
   validates :new_submission_cutoff_date, presence: true
   validates :edit_submission_cutoff_date, presence: true
 
-  scope :active, -> { where(active: true).first }
-
-  def new_cutoff_date_invalid?
-    new_submission_cutoff_date < Time.now
+  def self.active
+    Cohort.where(active: true).first
   end
 end

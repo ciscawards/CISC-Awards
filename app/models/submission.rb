@@ -24,7 +24,7 @@ class Submission < ApplicationRecord
       :maximum   => 498,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
-      :too_long  => "can't have more than 125 words"
+      :too_long  => "can't have more than 500 words"
   }
 
   validates :steelwork_completion_date, presence: true, steelwork_completion_date: true

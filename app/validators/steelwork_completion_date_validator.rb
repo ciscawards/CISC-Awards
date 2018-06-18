@@ -1,6 +1,6 @@
 class SteelworkCompletionDateValidator < ActiveModel::EachValidator
   def validate_each(record, attr_name, value)
-    unless value <= record.cohort.steel_work_completed_deadline
+    unless value.present? && value <= record.cohort.steel_work_completed_deadline
       record.errors.add(attr_name, I18n.t("activerecord.errors.models.submission.attributes.steelwork_completion_date.steelwork_completion_date"))
     end
   end

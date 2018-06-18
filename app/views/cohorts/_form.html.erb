@@ -3,22 +3,22 @@
   <div class="well">
     <div class="form-group">
       <%= f.label :start_at %>
-      <%= f.text_field :start_at, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.start_at.strftime("%Y-%m-%d") %>
+      <%= f.text_field :start_at, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.start_at.present? ? @cohort.start_at.strftime("%Y-%m-%d") : nil %>
     </div>
 
     <div class="form-group">
       <%= f.label :new_submission_cutoff_date %>
-      <%= f.text_field :new_submission_cutoff_date, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.new_submission_cutoff_date.strftime("%Y-%m-%d") %>
+      <%= f.text_field :new_submission_cutoff_date, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.new_submission_cutoff_date.present? ? @cohort.new_submission_cutoff_date.strftime("%Y-%m-%d") : nil %>
     </div>
 
     <div class="form-group">
       <%= f.label :edit_submission_cutoff_date %>
-      <%= f.text_field :edit_submission_cutoff_date, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.edit_submission_cutoff_date.strftime("%Y-%m-%d") %>
+      <%= f.text_field :edit_submission_cutoff_date, data:{ provide:'datepicker' }, class: 'form-control', value:  @cohort.edit_submission_cutoff_date.present? ? @cohort.edit_submission_cutoff_date.strftime("%Y-%m-%d") : nil %>
     </div>
 
     <div class="form-group">
       <%= f.label :steel_work_completed_deadline %>
-      <%= f.text_field :steel_work_completed_deadline, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.steel_work_completed_deadline.strftime("%Y-%m-%d") %>
+      <%= f.text_field :steel_work_completed_deadline, data:{ provide:'datepicker' }, class: 'form-control', value: @cohort.steel_work_completed_deadline.present? ? @cohort.steel_work_completed_deadline.strftime("%Y-%m-%d") : nil %>
     </div>
   </div>
 

@@ -19,7 +19,6 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
         return form.find("label.message[for='" + (element.attr('id')) + "']").text(message);
     },
     remove: function(element, settings) {
-        debugger;
         var errorFieldClass, form, inputErrorField, label, labelErrorField;
         // Whole Form
         form = $(element[0].form);

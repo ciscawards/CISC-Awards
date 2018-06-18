@@ -5,7 +5,7 @@
     <h1>Submissions</h1>
   </div>
   <div style="margin-left:auto">
-    <%= link_to("New Submission", new_submission_path, class: "btn btn-primary") unless Cohort.active.nil? || Cohort.active.new_cutoff_date_invalid? %>
+    <%= link_to("New Submission", new_submission_path, class: "btn btn-primary") if show_new_submission_button? %>
   </div>
 </div>
 
