@@ -9,7 +9,7 @@ class SubmissionCategory < ApplicationRecord
       :maximum   => 348,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
-      :too_long  => "can't have more than 350 words"
+      :too_long  => "Maximum of 350 words"
   }
 
   def category_always_selected

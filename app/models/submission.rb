@@ -11,20 +11,19 @@ class Submission < ApplicationRecord
   scope :submitted, -> { where(:submitted => true) }
   scope :incomplete, -> { where("submitted IS NULL OR submitted = false") }
 
-
   validates :name, presence: true
   validates :brief_description, :length => {
       :maximum   => 123,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
-      :too_long  => "can't have more than 125 words"
+      :too_long  => "Maximum of 125 words"
   }
 
   validates :description, :length => {
       :maximum   => 498,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
-      :too_long  => "can't have more than 500 words"
+      :too_long  => "Maximum of 500 words"
   }
 
   validates :steelwork_completion_date, presence: true, steelwork_completion_date: true

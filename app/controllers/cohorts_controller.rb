@@ -13,7 +13,7 @@ class CohortsController < ApplicationController
 
   def create
     @cohort = Cohort.new(cohort_params)
-    @cohort.active = true
+    @cohort.active = true if params[:activate_cohort]
     if @cohort.save
       flash[:success] = "Cohort created."
       redirect_to cohorts_path
@@ -29,7 +29,7 @@ class CohortsController < ApplicationController
   def update
     @cohort = Cohort.find(params[:id])
     c_p = cohort_params
-    c_p[:active] = !@cohort.active?
+    c_p[:active] = !@cohort.active? if params[:activate_cohort]
     if @cohort.update_attributes(c_p)
       flash[:success] = "Cohort updated"
       redirect_to cohorts_path
@@ -53,5 +53,4 @@ class CohortsController < ApplicationController
   def cohort_activatable?
     params[:activate_cohort] && Cohort.where(:active => false).count < 1
   end
-
 end
