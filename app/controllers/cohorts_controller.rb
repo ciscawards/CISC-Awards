@@ -51,7 +51,6 @@ class CohortsController < ApplicationController
   end
 
   def cohort_activatable?
-    binding.pry
     params[:activate_cohort] && Cohort.where(:active => false).count < 1
   end
 
