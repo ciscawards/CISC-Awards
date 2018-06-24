@@ -1,21 +1,37 @@
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
 
-  <% if current_user.present? && current_user.is_admin? %>
-    <%= f.label :role %>
-    <%= f.select :role, User.roles.keys.map { |r| [r.humanize, r] } %>
-  <% end %>
+  <div class="form-group">
+    <% if current_user.present? && current_user.is_admin? %>
+      <%= f.label :role %>
+      <%= f.select :role, User.roles.keys.map { |r| [r.humanize, r] } %>
+    <% end %>
+  </div>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group-vertical btn-block">
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
 <% end %>
