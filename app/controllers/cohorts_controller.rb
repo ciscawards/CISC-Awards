@@ -13,7 +13,7 @@ class CohortsController < ApplicationController
 
   def create
     @cohort = Cohort.new(cohort_params)
-    @cohort.active = true if params[:activate_cohort]
+    @cohort.active = true
     if @cohort.save
       flash[:success] = "Cohort created."
       redirect_to cohorts_path
@@ -29,9 +29,9 @@ class CohortsController < ApplicationController
   def update
     @cohort = Cohort.find(params[:id])
     c_p = cohort_params
-    c_p[:active] = !@cohort.active? if params[:activate_cohort]
+    c_p[:active] = !@cohort.active?
     if @cohort.update_attributes(c_p)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Cohort updated"
       redirect_to cohorts_path
     else
       render 'edit'
@@ -46,8 +46,13 @@ class CohortsController < ApplicationController
 
   private
 
-    def cohort_params
-      params.require(:cohort).permit(:start_at, :new_submission_cutoff_date, :edit_submission_cutoff_date, :steel_work_completed_deadline, :active, categories_attributes: [:id, :title, :always_selected, :description, :_destroy])
-    end
+  def cohort_params
+    params.require(:cohort).permit(:start_at, :new_submission_cutoff_date, :edit_submission_cutoff_date, :steel_work_completed_deadline, :active, categories_attributes: [:id, :title, :always_selected, :description, :_destroy])
+  end
+
+  def cohort_activatable?
+    binding.pry
+    params[:activate_cohort] && Cohort.where(:active => false).count < 1
+  end
 
 end
