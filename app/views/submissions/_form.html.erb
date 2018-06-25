@@ -190,9 +190,6 @@
     });
 
     $("#submission-form").submit(function(){
-        debugger;
-        $('html, body').animate({
-            scrollTop: $(".label_errors").first().offset().top
-        }, 2000);
+        $("#submission-form").removeClass('dirty');
     });
 </script>
