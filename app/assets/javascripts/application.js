@@ -26,7 +26,7 @@
 
 $.fraola_creds = {
     toolbarStickyOffset: 50,
-        key: 'PG-10dpj1xB3wwdqwI2J3B10B7B7A5F4igqknsfxyG5hcj1=='
+        key: 'RH4I3B17A10iB6E5E4H5I2I3C7B6D6E5C-11bkpgC9gkjlxD-8mH4A-21D-17utE-11E1ppeB-21D-16wC2zkA-8lF-7sC5lfpriuc=='
 };
 
 $(document).ready(function(){
