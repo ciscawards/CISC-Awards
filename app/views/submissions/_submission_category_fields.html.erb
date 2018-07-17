@@ -18,7 +18,7 @@
 
   <tr class="category-description" <%= 'style=display:none' unless f.object.description.present? || f.object.category.always_selected? %>>
     <td><%= f.label :description %></td>
-    <td><%= f.text_area :description, class: 'form-control custom-control' %></td>
+    <td><%= f.text_area :description, class: 'form-control custom-control', data: { max_words: 350 }  %></td>
   </tr>
   <%= f.hidden_field :category_id %>
 </table>

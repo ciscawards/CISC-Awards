@@ -13,14 +13,14 @@ class Submission < ApplicationRecord
 
   validates :name, presence: true
   validates :brief_description, :length => {
-      :maximum   => 123,
+      :maximum   => 125,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
       :too_long  => "Maximum of 125 words"
   }
 
   validates :description, :length => {
-      :maximum   => 498,
+      :maximum   => 500,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
       :too_long  => "Maximum of 500 words"

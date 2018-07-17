@@ -6,7 +6,7 @@ class SubmissionCategory < ApplicationRecord
   validates :description, presence: true, if: -> record { record.category_always_selected && record.submission_submitted}
 
   validates :description, :length => {
-      :maximum   => 348,
+      :maximum   => 350,
       :tokenizer => lambda { |str| str.scan(/\s+|$/) },
       :js_tokenizer => "split(' ')",
       :too_long  => "Maximum of 350 words"

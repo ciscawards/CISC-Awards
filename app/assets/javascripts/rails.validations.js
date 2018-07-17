@@ -95,6 +95,17 @@
       return element.trigger('element:validate:pass.ClientSideValidations').data('valid', null);
     };
     failElement = function(message) {
+        var maxWords = element.data('maxWords');
+        var contentArray = element.val().split(' ');
+
+        if (contentArray.length > maxWords) {
+            element.froalaEditor('html.set', contentArray.slice(0, maxWords).join(" ") + '&nbsp');
+            var editor = element.data('froala.editor');
+            editor.events.focus();
+            editor.selection.setAtEnd(editor.$el.get(0));
+            editor.selection.restore();
+        }
+
       element.trigger('element:validate:fail.ClientSideValidations', message).data('valid', false);
       return false;
     };

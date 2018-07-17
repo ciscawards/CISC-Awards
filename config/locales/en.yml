@@ -29,7 +29,7 @@ en:
     password_reset:
       subject: "Password reset"
   home:
-    cta_submit_application: "Apply for a CISC Award"
+    cta_submit_application: "Click here to start your submission"
     cta_manage_cohort: "Manage Cohorts"
     cta_view_submissions: "View current submissions"
     main_text: "Welcome to the CISC Awards submission system!"
