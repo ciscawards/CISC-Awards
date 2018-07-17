@@ -64,10 +64,9 @@ span.picture {
 }
 
 .sg-home {
-  background: image-url('Banner.jpg');
   background-size: cover;
   background-position:50% 50%;
-  height: 40%;
+  height: 60%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -78,6 +77,22 @@ span.picture {
     margin-right: auto;
     margin-left: auto;
   }
+}
+
+.sg-home1{
+  background: image-url('banner1.png');
+}
+.sg-home2{
+  background: image-url('banner2.png');
+}
+.sg-home3{
+  background: image-url('banner3.png');
+}
+.sg-home4{
+  background: image-url('banner4.png');
+}
+.sg-home5{
+  background: image-url('banner5.png');
 }
 
 .pagination {

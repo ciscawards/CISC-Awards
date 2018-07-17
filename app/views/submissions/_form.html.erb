@@ -82,7 +82,7 @@
           <%= render 'attachment_fields', :f => attachment %>
         <% end %>
         <div class="links">
-          <%= link_to_add_association 'Add attachment', f, :attachments, class: 'btn btn-primary btn-block' %>
+          <%= link_to_add_association "#{@submission.attachments.length > 0 ? "Add another attachment" : "Add attachment"}", f, :attachments, class: 'btn btn-primary btn-block', id: 'add-attachment' %>
         </div>
       </div>
       <hr />
@@ -202,5 +202,11 @@
 
     $("#submission-form").submit(function(){
         $("#submission-form").removeClass('dirty');
+    });
+
+    $('#add-attachment').on('click', function(){
+        if($('.attachment').length === 0){
+            $('#add-attachment')[0].innerText = 'Add another attachment'
+        }
     });
 </script>
