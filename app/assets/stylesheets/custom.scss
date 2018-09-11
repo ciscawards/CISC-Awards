@@ -64,35 +64,21 @@ span.picture {
 }
 
 .sg-home {
-  background-size: cover;
-  background-position:50% 50%;
+  background: url('banner.jpg') no-repeat right bottom;
   height: 60%;
+  width: 100%;
+  margin: 30px 0 0 0;
+  padding: 0 0 0 0 !important;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-  resize: vertical;
+  resize: both;
 
   .cta-submit {
     margin-right: auto;
     margin-left: auto;
   }
-}
-
-.sg-home1{
-  background: image-url('banner1.png');
-}
-.sg-home2{
-  background: image-url('banner2.png');
-}
-.sg-home3{
-  background: image-url('banner3.png');
-}
-.sg-home4{
-  background: image-url('banner4.png');
-}
-.sg-home5{
-  background: image-url('banner5.png');
 }
 
 .pagination {
