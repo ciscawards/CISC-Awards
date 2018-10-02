@@ -23,17 +23,6 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :brief_description %>
-          <%= f.text_area :brief_description, class: 'form-control', data: { max_words: 125 } %>
-          <small id="emailHelp" class="form-text text-muted">A 125 word introductory paragraph describing the project for use in Awards promotional materials.</small>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :description, "Full description" %>
-          <%= f.text_area :description, class: 'form-control', data: { max_words: 500 } %>
-        </div>
-
-        <div class="form-group">
           <%= f.label :cisc_member, "CISC - Alberta Region Member Involved" %>
           <%= f.text_field :cisc_member, class: 'form-control' %>
           <div class="checkbox">
@@ -63,8 +52,26 @@
 
   <div class="row">
     <div class="col-md-12">
+      <h3>Project Descriptions</h3>
+      <div class="well">
+        <div class="form-group">
+          <%= f.label :brief_description %>
+          <%= f.text_area :brief_description, class: 'form-control', data: { max_words: 125 } %>
+          <small id="emailHelp" class="form-text text-muted">A 125 word introductory paragraph describing the project for use in Awards promotional materials.</small>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, "Full description" %>
+          <%= f.text_area :description, class: 'form-control', data: { max_words: 500 } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <h3>Categories</h3>
-      <p>Please select the categories in which you would like to enter the project.
+      <p>Please select the categories in which you would like to enter the project and use the description to further explain why it deserves to win in this category.
         Note: The judging panel has the ability to shift projects to different categories as they deem appropriate based upon their review of all submissions.</p>
       <div>
         <%= f.fields_for :submission_categories do |submission_category| %>
