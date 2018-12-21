@@ -11,6 +11,9 @@
   </div>
 </div>
 <h3>Team Members</h3>
+<!-- TODO: Add user who created the submission -->
+Submitting Team Member
+<%=@submission.user.name %> and email
 <table class="table table-striped">
   <% @submission.team_members.each do |team_member| %>
     <tr>
@@ -26,6 +29,8 @@
     <%= sanitize(@submission.description) %>
   </div>
 </div>
+<h3>Steelwork Completion Date</h3>
+<%=@submission.steelwork_completion_date %>
 <h3>Categories</h3>
 <table class="table table-striped">
   <!-- TODO: Sort with required categories at top -->
