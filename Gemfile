@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.3.4"
+ruby "2.4.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0', '>= 5.0.2'
 gem 'rails-controller-testing'
 gem 'bcrypt',                  '3.1.11'
 gem 'faker',                   '1.6.6'
@@ -40,9 +40,8 @@ gem 'cocoon'
 gem 'wysiwyg-rails'
 gem 'font-awesome-rails'
 gem 'pdfkit'
+gem 'rake'
 gem 'render_anywhere', require: false
-#TODO This needs to be set only on heroku prod
-gem 'wkhtmltopdf-heroku'
 gem 'rubyzip'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -53,8 +52,6 @@ group :development, :test do
   gem 'pry-nav'
 end
 
-gem "rake"
-
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
@@ -62,6 +59,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  gem 'wkhtmltopdf-heroku'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
