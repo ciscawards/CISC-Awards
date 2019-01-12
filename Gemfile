@@ -43,6 +43,7 @@ gem 'pdfkit'
 gem 'rake'
 gem 'render_anywhere', require: false
 gem 'rubyzip'
+gem 'puma_worker_killer'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
