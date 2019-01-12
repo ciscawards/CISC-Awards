@@ -159,7 +159,7 @@ class SubmissionsController < ApplicationController
       submissions.each do |submission|
         zos.put_next_entry "#{sanitize_filename(submission.name)}.pdf"
         kit = PDFKit.new(as_html(submission), :page_size => 'Letter')
-        # kit.stylesheets << 'public/bootstrap.min.css'
+        kit.stylesheets << 'public/bootstrap.min.css'
         zos.print kit.to_pdf
       end
     end
