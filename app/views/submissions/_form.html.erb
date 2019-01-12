@@ -99,7 +99,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group-vertical btn-block">
-      <%= f.submit "Click to create expression of interest", class: "btn btn-primary" %>
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
       <%= f.submit "Click to submit for judging", class: "btn btn-primary", name: 'submit_judges',  data: { confirm: "This will submit this award application for judging. You will not be able to edit this any more. Are you sure?" } %>
       </div>
     </div>
