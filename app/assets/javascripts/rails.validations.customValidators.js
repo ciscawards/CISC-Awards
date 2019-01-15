@@ -8,6 +8,7 @@ window.ClientSideValidations.validators.local['steelwork_completion_date'] = fun
 
 window.ClientSideValidations.validators.local['word_count'] = function(element, options) {
   if (element.val().replace(/<(?:.|\n)*?>/gm, '').split(' ').length > element.data('max-words')){
+    debugger;
     return options.message;
   }
 };
