@@ -9,7 +9,10 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
       if (element.attr('autofocus')) {
         element.attr('autofocus', false);
       }
-      element.before(inputErrorField);
+
+      if (element.is('textarea')){
+        element = element.parent().children('.fr-box, textarea')
+      }
       inputErrorField.find('span#input_tag').replaceWith(element);
       inputErrorField.find('label.message').attr('for', element.attr('id'));
       labelErrorField.find('label.message').attr('for', element.attr('id'));
