@@ -1,7 +1,12 @@
 class WordCountValidator < ActiveModel::EachValidator
   def validate_each(record, attr_name, value)
-    if value.present? && ActionView::Base.full_sanitizer.sanitize(value).scan(/\s+|$/).length > 125
-      record.errors.add(attr_name, I18n.t("activerecord.errors.models.submission.attributes.brief_description.word_count"))
+    if value.present?
+      max_word_count_const_name = attr_name.to_s.concat("_length").upcase.to_sym
+      max_word_count = record.class.name.constantize.const_get(max_word_count_const_name)
+      value_word_count = ActionView::Base.full_sanitizer.sanitize(value).scan(/\s+|$/).length
+      if value_word_count > max_word_count
+        record.errors.add(attr_name, I18n.t("activerecord.errors.models.#{record.class.name.underscore}.attributes.#{attr_name.to_s}.word_count"))
+      end
     end
   end
 end
