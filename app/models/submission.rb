@@ -15,8 +15,8 @@ class Submission < ApplicationRecord
   scope :incomplete, -> { where("submitted IS NULL OR submitted = false") }
 
   validates :name, presence: true
-  validates :brief_description, brief_description_word_count: true
-  # validate :description_length
+  validates :brief_description, word_count: true
+  validates :description, word_count: true
 
   validates :steelwork_completion_date, presence: true, steelwork_completion_date: true
 
