@@ -6,13 +6,14 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
       inputErrorField = $(settings.input_tag);
       labelErrorField = $(settings.label_tag);
       label = form.find("label[for='" + (element.attr('id')) + "']:not(.message)");
-      if (element.attr('autofocus')) {
-        element.attr('autofocus', false);
-      }
 
       element.before(inputErrorField);
       if (element.is('textarea')){
         inputErrorField.find('span#input_tag').replaceWith(element.parent().children('.fr-box, textarea'));
+        var editor = element.data('froala.editor');
+        editor.events.focus();
+        editor.selection.setAtEnd(editor.$el.get(0));
+        editor.selection.restore();
       } else {
         inputErrorField.find('span#input_tag').replaceWith(element);
       }
@@ -41,5 +42,9 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
       label.detach();
       return labelErrorField.replaceWith(label);
     }
+    var editor = element.data('froala.editor');
+    editor.events.focus();
+    editor.selection.setAtEnd(editor.$el.get(0));
+    editor.selection.restore();
   }
 };
