@@ -2,8 +2,6 @@ class Submission < ApplicationRecord
   BRIEF_DESCRIPTION_LENGTH = 125
   DESCRIPTION_LENGTH = 500
 
-  include SharedValidators
-
   belongs_to :cohort
   belongs_to :user
   has_many :team_members, inverse_of: :submission, dependent: :destroy
@@ -17,8 +15,8 @@ class Submission < ApplicationRecord
   scope :incomplete, -> { where("submitted IS NULL OR submitted = false") }
 
   validates :name, presence: true
-  validate :brief_description_length
-  validate :description_length
+  validates :brief_description, brief_description_word_count: true
+  # validate :description_length
 
   validates :steelwork_completion_date, presence: true, steelwork_completion_date: true
 
@@ -27,19 +25,5 @@ class Submission < ApplicationRecord
     validates :brief_description, presence: true
     validates :description, presence: true
     validates :cisc_member, presence: true
-  end
-
-  private
-
-  def brief_description_length
-    if word_count_too_long?(brief_description, BRIEF_DESCRIPTION_LENGTH)
-      errors.add(:brief_description, "Maximum of #{BRIEF_DESCRIPTION_LENGTH} words")
-    end
-  end
-
-  def description_length
-    if word_count_too_long?(description, DESCRIPTION_LENGTH)
-      errors.add(:description, "Maximum of #{DESCRIPTION_LENGTH} words")
-    end
   end
 end
