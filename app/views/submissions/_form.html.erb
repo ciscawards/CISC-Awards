@@ -184,36 +184,8 @@
         $(".title-selector").filter(function(){return this.value !== "<%= t('submission.team_member.titles.other') %>"}).trigger('change');
     }
 
-    $('input[data-max-words]').on('keydown', function (e) {
-
-      // var maxWords = element.data('maxWords');
-      // var contentArray = element.val().split(' ');
-      //
-      // if (contentArray.length > maxWords) {
-      //   element.froalaEditor('html.set', contentArray.slice(0, maxWords).join(" ") + '&nbsp');
-      //   var editor = element.data('froala.editor');
-      //   editor.events.focus();
-      //   editor.selection.setAtEnd(editor.$el.get(0));
-      //   editor.selection.restore();
-      // }
-      //   var $txt = $(this),
-      //       max = $txt.data('maxWords'),
-      //       val = $txt.val(),
-      //       words = val.split(' ').length;
-      //
-      //   if (words === max && e.keyCode === 32)
-      //       return false;
-    });
-
     $('textarea:not(.no-wysiwyg)').enableClientSideValidations();
 
-    $('textarea:not(.no-wysiwyg)').on('froalaEditor.keyup', function (e, editor) {
-        var input = $(this).val($(this).froalaEditor('html.get'));
-        var form = input.closest('form');
-        var validators = form[0].ClientSideValidations.settings.validators;
-        input.data("changed", true);
-        input.isValid(validators);
-    });
 
     $(function () {
         $('#submission-form').areYouSure({message: 'Are you sure you want to leave? Changes may not have been saved.'});
