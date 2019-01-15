@@ -37,10 +37,7 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
     // This is the whole error field
     labelErrorField = label.closest("." + errorFieldClass);
     if (inputErrorField[0]) {
-      // This removes the text_area element
-      inputErrorField.find("#" + (element.attr('id'))).detach();
-      // TODO: This is where things are borking
-      inputErrorField.replaceWith(element);
+      inputErrorField.children().unwrap();
       label.detach();
       return labelErrorField.replaceWith(label);
     }
