@@ -2,6 +2,8 @@ class Submission < ApplicationRecord
   BRIEF_DESCRIPTION_LENGTH = 125
   DESCRIPTION_LENGTH = 500
 
+  include SharedValidators
+
   belongs_to :cohort
   belongs_to :user
   has_many :team_members, inverse_of: :submission, dependent: :destroy
@@ -39,10 +41,5 @@ class Submission < ApplicationRecord
     if word_count_too_long?(description, DESCRIPTION_LENGTH)
       errors.add(:description, "Maximum of #{DESCRIPTION_LENGTH} words")
     end
-  end
-
-  def word_count_too_long?(input_html, max_word_count)
-    raw_text = ActionView::Base.full_sanitizer.sanitize(input_html)
-    raw_text.scan(/\s+|$/).length > max_word_count
   end
 end

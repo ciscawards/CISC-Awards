@@ -63,6 +63,8 @@
         <div class="form-group">
           <%= f.label :description, "Full description" %>
           <%= f.text_area :description, class: 'form-control', data: { max_words: 500 } %>
+          <small id="emailHelp" class="form-text text-muted">A 500 word description of the project.</small>
+
         </div>
       </div>
     </div>
@@ -183,13 +185,24 @@
     }
 
     $('input[data-max-words]').on('keydown', function (e) {
-        var $txt = $(this),
-            max = $txt.data('maxWords'),
-            val = $txt.val(),
-            words = val.split(' ').length;
 
-        if (words === max && e.keyCode === 32)
-            return false;
+      // var maxWords = element.data('maxWords');
+      // var contentArray = element.val().split(' ');
+      //
+      // if (contentArray.length > maxWords) {
+      //   element.froalaEditor('html.set', contentArray.slice(0, maxWords).join(" ") + '&nbsp');
+      //   var editor = element.data('froala.editor');
+      //   editor.events.focus();
+      //   editor.selection.setAtEnd(editor.$el.get(0));
+      //   editor.selection.restore();
+      // }
+      //   var $txt = $(this),
+      //       max = $txt.data('maxWords'),
+      //       val = $txt.val(),
+      //       words = val.split(' ').length;
+      //
+      //   if (words === max && e.keyCode === 32)
+      //       return false;
     });
 
     $('textarea:not(.no-wysiwyg)').enableClientSideValidations();
