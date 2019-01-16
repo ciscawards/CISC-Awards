@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :cohorts
   resources :submissions do
     post :single_download, on: :member
+    get :unsubmit, on: :member
   end
   post '/bulk_actions', to: 'submissions#bulk_actions'
   resources :account_activations, only: [:edit]

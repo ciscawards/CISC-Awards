@@ -97,6 +97,14 @@ class SubmissionsController < ApplicationController
     generate_zipped_pdfs [submission]
   end
 
+  def unsubmit
+    if @current_user.is_admin?
+      submission = Submission.find(params[:id])
+      submission.unsubmit
+    end
+    redirect_to submissions_path
+  end
+
   def bulk_actions
     if params[:bulk_deletion]
       bulk_deletion

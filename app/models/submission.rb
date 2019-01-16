@@ -26,4 +26,9 @@ class Submission < ApplicationRecord
     validates :description, presence: true
     validates :cisc_member, presence: true
   end
+
+  def unsubmit
+    submission.submitted? = false
+    submission.save
+  end
 end

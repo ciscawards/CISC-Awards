@@ -101,8 +101,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group-vertical btn-block">
-      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-      <%= f.submit "Click to submit for judging", class: "btn btn-primary", name: 'submit_judges',  data: { confirm: "This will submit this award application for judging. You will not be able to edit this any more. Are you sure?" } %>
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        <%= f.submit "Click to submit for judging", class: "btn btn-primary", name: 'submit_judges',  data: { confirm: "This will submit this award application for judging. You will not be able to edit this any more. Are you sure?" } %>
+        <%= link_to(submission_unsubmit_path, "Unsubmit") if @current_user.is_admin? && @submission.submitted? %>
       </div>
     </div>
   </div>
