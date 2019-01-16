@@ -3,7 +3,8 @@ class Attachment < ApplicationRecord
   require 'uri'
 
   def get_image_handler_path
-    uri = URI("http:#{url}")
-    URI.encode("#{ENV['CLOUDFRONT_URL']}/fit-in/600x700/#{ENV['S3_BUCKET']}#{uri.path}")
+    uri_escaped = URI.encode("http:#{url}").to_s
+    uri_proper = URI(uri_escaped)
+    "#{ENV['CLOUDFRONT_URL']}/fit-in/600x700/#{ENV['S3_BUCKET']}#{uri_proper.path}"
   end
 end
