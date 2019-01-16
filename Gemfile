@@ -44,6 +44,7 @@ gem 'rake'
 gem 'render_anywhere', require: false
 gem 'rubyzip'
 gem 'puma_worker_killer'
+gem 'pry-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

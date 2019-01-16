@@ -135,6 +135,8 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     puma (3.12.0)
     puma_worker_killer (0.1.0)
       get_process_mem (~> 0.2)
@@ -248,6 +250,7 @@ DEPENDENCIES
   pdfkit
   pg
   pry-nav
+  pry-rails
   puma (~> 3.0)
   puma_worker_killer
   rails (~> 5.0, >= 5.0.2)
