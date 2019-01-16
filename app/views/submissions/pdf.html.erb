@@ -28,7 +28,7 @@
   </div>
 </div>
 <h3>Steelwork Completion Date</h3>
-<%= @submission.steelwork_completion_date.strftime("%B %d, %Y") %>
+<%= submission.steelwork_completion_date.strftime("%B %d, %Y") %>
 <h3>Categories</h3>
 <table class="table table-striped">
   <!-- TODO: Sort with required categories at top -->
@@ -41,7 +41,8 @@
 </table>
 
 <p>Attached Files:</p>
+<% image_count = submission.attachments.images.count %>
 <% submission.attachments.images.each do |attachment| %>
-  <%= image_tag attachment.get_image_handler_path, style: 'display: block; margin-left: auto; margin-right: auto;' %>
+  <%= image_tag attachment.get_image_handler_path(image_count), style: 'display: block; margin-left: auto; margin-right: auto;' %>
   <br />
 <% end %>

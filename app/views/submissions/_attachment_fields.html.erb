@@ -5,7 +5,16 @@
     <% else %>
       <%= f.label :attachment_uploader, "Attachment uploader (Note only jpg, jpeg, png and gif formats accepted)" %>
       <%= f.file_field :attachment_uploader, accept: "image/*", class: 'form-control' %>
-    <% end %>
+      <small id="emailHelp" class="form-text text-muted">
+        To ensure your submission looks as good as possible take note of the following:
+        <ul>
+          <li>A total of 10MB is available for each submission. You can upload as many images as you'd like.</li>
+          <li>Each image will be allotted an equal portion of the 10MB.</li>
+          <li>If the image does not fit within its portion, it will be compressed until it fits its allotted portion which will reduce its quality</li>
+          <li>You can preview the image by clicking 'view' from the submissions index page</li>
+        </ul>
+      </small>
+  <% end %>
     <%= f.hidden_field :url, class: 'url-holder' %>
   </div>
   <%= link_to_remove_association('Remove this attachment', f, class: 'btn btn-primary remove-attachment') %>

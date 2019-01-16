@@ -42,9 +42,10 @@ Submitting Team Member
   <% end %>
 </table>
 
+<% image_count = @submission.attachments.images.count %>
 <% @submission.attachments.images.each do |attachment| %>
   <p>Attachment preview:</p>
-  <%= image_tag attachment.get_image_handler_path, class: 'img-responsive' %>
+  <%= image_tag attachment.get_image_handler_path(image_count), style: 'display: block; margin-left: auto; margin-right: auto;' %>
 <% end %>
 
 <%= link_to 'Back', submissions_path %> |
