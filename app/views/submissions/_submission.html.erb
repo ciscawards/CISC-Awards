@@ -1,7 +1,7 @@
 <tr>
   <td><%= check_box_tag "submission_ids[#{submission.id}]" %> <%= submission.name %></td>
   <td><%= submission.project_location %></td>
-  <td><%= submission.steelwork_completion_date.to_date %></td>
+  <td><%= submission.steelwork_completion_date.strftime("%B %d, %Y") %></td>
   <td><%= submission.submission_categories.map{|submission_category| submission_category.category.title}.join(", ") %></td>
   <% if @current_user.is_admin? || @current_user.is_judge? %>
     <td><%= "#{submission.user.name} - #{submission.user.email}"%></td>

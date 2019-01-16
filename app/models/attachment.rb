@@ -2,7 +2,7 @@ class Attachment < ApplicationRecord
   belongs_to :submission
   require 'uri'
 
-  scope :images, -> { where("url SIMILAR TO ?", '%(jpg|jpeg|png|gif)') }
+  scope :images, -> { where("LOWER(url) SIMILAR TO ?", '%(jpg|jpeg|png|gif)') }
 
   def get_image_handler_path
     uri_escaped = URI.encode("http:#{url}").to_s

@@ -30,7 +30,7 @@ Submitting Team Member
   </div>
 </div>
 <h3>Steelwork Completion Date</h3>
-<%=@submission.steelwork_completion_date %>
+<%= @submission.steelwork_completion_date.strftime("%B %d, %Y") %>
 <h3>Categories</h3>
 <table class="table table-striped">
   <!-- TODO: Sort with required categories at top -->
