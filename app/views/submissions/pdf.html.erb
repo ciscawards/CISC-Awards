@@ -39,6 +39,6 @@
 </table>
 
 <p>Attached Files:</p>
-<% submission.attachments.each do |attachment| %>
+<% submission.attachments.images.each do |attachment| %>
   <%= image_tag attachment.get_image_handler_path, class: 'img-responsive' %>
 <% end %>

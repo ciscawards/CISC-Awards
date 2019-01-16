@@ -3,8 +3,8 @@
     <% unless f.object.url.nil? %>
       <%= image_tag f.object.url, class: 'img-responsive' %>
     <% else %>
-      <%= f.label :attachment_uploader %>
-      <%= f.file_field :attachment_uploader, accept: "image/*;capture=camera", class: 'form-control' %>
+      <%= f.label :attachment_uploader, "Attachment uploader (Note only jpg, jpeg, png and gif formats accepted)" %>
+      <%= f.file_field :attachment_uploader, accept: "image/*", class: 'form-control' %>
     <% end %>
     <%= f.hidden_field :url, class: 'url-holder' %>
   </div>
