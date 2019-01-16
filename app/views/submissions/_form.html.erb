@@ -161,21 +161,31 @@
     });
   });
 
-  $('textarea:not(.no-wysiwyg)').enableClientSideValidations();
+  var wysiwygTextarea = $('textarea:not(.no-wysiwyg)');
+  wysiwygTextarea.enableClientSideValidations();
 
   $('.apply-category').change(function(){
-    var description = $(this).parent().parent().siblings('.category-description');
+    var description = $(this).parent().parent().siblings('.js-categoryDescription');
     var textarea = description.find("textarea");
     description.toggle(this.checked);
     if (this.checked) {
       textarea.froalaEditor('position.refresh');
     } else {
-      textarea.froalaEditor('html.set', null);
+      textarea.froalaEditor('html.set', '');
+      textarea.val($(this).froalaEditor('html.get'));
+      var validators = textarea.closest('form')[0].ClientSideValidations.settings.validators;
+      textarea.data("changed", true);
+      textarea.isValid(validators);
     }
   });
 
   $(document).ready(function(){
     dropDownClean();
+    $('.apply-category').each(function(){
+      if (!this.checked) {
+        $(this).parent().parent().siblings('.js-categoryDescription').hide();
+      }
+    })
   });
 
   $('#team_member').on('cocoon:after-insert', function(e, insertedItem) {
@@ -186,7 +196,7 @@
     $(".title-selector").filter(function(){return this.value !== "<%= t('submission.team_member.titles.other') %>"}).trigger('change');
   }
 
-  $('textarea:not(.no-wysiwyg)').on('froalaEditor.keyup', function (e, editor) {
+  wysiwygTextarea.on('froalaEditor.keyup', function (e, editor) {
     var input = $(this).val($(this).froalaEditor('html.get'));
     var form = input.closest('form');
     var validators = form[0].ClientSideValidations.settings.validators;

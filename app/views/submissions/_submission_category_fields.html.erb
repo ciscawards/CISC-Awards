@@ -1,5 +1,5 @@
 <table class="table table-striped">
-  <tr>
+  <tr class="js-categoryToggle">
     <td class="col-md-3">
       <%= check_box_tag(
               "#{f.object.category.title.parameterize(separator: '_')}_#{f.object.category.id}",
@@ -16,7 +16,7 @@
     <td class="col-md-9"><%= sanitize(f.object.category.description) %></td>
   </tr>
 
-  <tr class="category-description" <%= 'style=display:none' unless f.object.description.present? || f.object.category.always_selected? %>>
+  <tr class="js-categoryDescription">
     <td><%= f.label :description %></td>
     <td>
       <%= f.text_area :description, class: 'form-control custom-control', data: { max_words: 350 } %>
