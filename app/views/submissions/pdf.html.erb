@@ -42,5 +42,6 @@
 
 <p>Attached Files:</p>
 <% submission.attachments.images.each do |attachment| %>
-  <%= image_tag attachment.get_image_handler_path, class: 'img-responsive' %>
+  <%= image_tag attachment.get_image_handler_path, style: 'display: block; margin-left: auto; margin-right: auto;' %>
+  <br />
 <% end %>
