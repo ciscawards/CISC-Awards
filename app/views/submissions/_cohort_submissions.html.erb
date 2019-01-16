@@ -4,7 +4,11 @@
   <tr>
     <th><%=check_box_tag :js_select_all, 1, nil, {class: "js_select_all"} %> Project Name</th>
     <th>Project Location</th>
+    <th>Steelwork Completion Date</th>
     <th>Project Categories</th>
+    <% if @current_user.is_admin? || @current_user.is_judge? %>
+      <th>Submitted By</th>
+    <% end %>
     <th>Actions</th>
   </tr>
   </thead>
