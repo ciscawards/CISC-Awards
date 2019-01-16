@@ -43,8 +43,10 @@ window.ClientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'] = 
       return labelErrorField.replaceWith(label);
     }
     var editor = element.data('froala.editor');
-    editor.events.focus();
-    editor.selection.setAtEnd(editor.$el.get(0));
-    editor.selection.restore();
+    if (editor) {
+      editor.events.focus();
+      editor.selection.setAtEnd(editor.$el.get(0));
+      editor.selection.restore();
+    }
   }
 };

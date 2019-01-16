@@ -163,13 +163,12 @@
 
   $('.apply-category').change(function(){
     var description = $(this).parent().parent().siblings('.category-description');
+    var textarea = description.find("textarea");
     description.toggle(this.checked);
     if (this.checked) {
-      description.find("textarea").froalaEditor($.fraola_creds);
-      description.find("textarea").froalaEditor('position.refresh');
+      textarea.froalaEditor('position.refresh');
     } else {
-      description.find("textarea").froalaEditor('html.set', null);
-      description.find("textarea").froalaEditor('destroy');
+      textarea.froalaEditor('html.set', null);
     }
   });
 
@@ -184,8 +183,6 @@
   function dropDownClean () {
     $(".title-selector").filter(function(){return this.value !== "<%= t('submission.team_member.titles.other') %>"}).trigger('change');
   }
-
-  $('textarea:not(.no-wysiwyg)').enableClientSideValidations();
 
   $('textarea:not(.no-wysiwyg)').on('froalaEditor.keyup', function (e, editor) {
     var input = $(this).val($(this).froalaEditor('html.get'));

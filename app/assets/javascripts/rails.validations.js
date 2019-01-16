@@ -93,6 +93,7 @@
       return element.trigger('element:validate:pass.ClientSideValidations').data('valid', null);
     };
     failElement = function(message) {
+      debugger;
       element.trigger('element:validate:fail.ClientSideValidations', message).data('valid', false);
       return false;
     };
@@ -145,6 +146,7 @@
         after: function(element, eventData) {},
         before: function(element, eventData) {},
         fail: function(element, message, addError, eventData) {
+          debugger;
           return addError();
         },
         pass: function(element, removeError, eventData) {
@@ -223,6 +225,7 @@
             ClientSideValidations.callbacks.element.before($(this), eventData);
           },
           'element:validate:fail.ClientSideValidations': function(eventData, message) {
+            debugger;
             var element;
             element = $(this);
             ClientSideValidations.callbacks.element.fail(element, message, function() {

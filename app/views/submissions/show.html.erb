@@ -44,7 +44,7 @@ Submitting Team Member
 
 <% @submission.attachments.each do |attachment| %>
   <p>Attachment preview:</p>
-  <%= image_tag "http:#{attachment.url}", class: 'img-responsive' %>
+  <%= image_tag attachment.get_image_handler_path, class: 'img-responsive' %>
 <% end %>
 
 <%= link_to 'Back', submissions_path %> |
