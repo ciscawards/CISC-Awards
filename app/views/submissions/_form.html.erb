@@ -161,6 +161,8 @@
     });
   });
 
+  $('textarea:not(.no-wysiwyg)').enableClientSideValidations();
+
   $('.apply-category').change(function(){
     var description = $(this).parent().parent().siblings('.category-description');
     var textarea = description.find("textarea");
